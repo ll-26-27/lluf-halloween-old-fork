@@ -2,8 +2,8 @@ import "@fontsource-variable/inter";
 import "./globals.css";
 
 export const metadata = {
-  title: { default: "Interviewing · TDM 155AI week 8", template: "%s · TDM 155AI week 8" },
-  description: "TDM 155AI week 8: Interviewing and podcasting. A recording and interviewing machine, a copy to remix, and docs on questions and GarageBand.",
+  title: { default: "Interviewing · LLUF Halloween", template: "%s · LLUF Halloween" },
+  description: "LLUF Halloween: interviewing and podcasting. A recording and interviewing machine, a copy to remix, and docs on questions and GarageBand.",
 };
 
 export const viewport = {

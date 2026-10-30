@@ -22,7 +22,7 @@ export default function MwRemixPage() {
           <h1>mwRemix</h1>
           <p className="lede">What the <Link href="/machine">machine</Link> became after a morning of asking for changes: an AI producer you steer by highlighting the transcript, fact checks with sources, a beat sheet for the host, and every AI-sourced question flagged. Start from <Link href="/remix">Remix</Link> and see where yours goes.</p>
                   </header>
-        <Machine apiBase="/mw-remix/api" storageKey="tdm155ai-week-8:mw-remix" />
+        <Machine apiBase="/mw-remix/api" storageKey="lluf-halloween:mw-remix" />
       </main>
       <SiteFooter />
     </>

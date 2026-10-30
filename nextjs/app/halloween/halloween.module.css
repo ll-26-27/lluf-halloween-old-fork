@@ -1,0 +1,88 @@
+/* The Halloween theme. It recolors the site's tokens (globals.css) inside .haunted only, so the rest of the site keeps
+   its own colors, and adds the decorations: a moon, bats, a cobweb and a spider on the heading, and fog at the bottom. */
+
+.haunted {
+  --paper: #110c16;
+  --ink: #f1e9da;
+  --muted: #ab9fb6;
+  --line: #2f2439;
+  --accent: #ff8a1f;
+  --accent-ink: #1c0c00;
+  --wash: #191220;
+  --hover: #221829;
+  --code: #191220;
+  --ok: #a6e35b;
+  --error: #ff6a6a;
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow-x: clip;
+  background:
+    radial-gradient(circle at 88% 70px, rgba(255, 214, 140, .16), transparent 220px),
+    radial-gradient(ellipse at 50% -10%, rgba(120, 60, 160, .22), transparent 60%),
+    var(--paper);
+  color: var(--ink);
+}
+:global(body):has(.haunted) { background: #110c16; }
+
+/* Fog that drifts along the bottom of the window. */
+.haunted::after {
+  content: "";
+  position: fixed;
+  inset: auto 0 0;
+  z-index: -1;
+  height: 220px;
+  background:
+    radial-gradient(ellipse 40% 60% at 20% 100%, rgba(190, 170, 220, .10), transparent),
+    radial-gradient(ellipse 35% 50% at 70% 100%, rgba(190, 170, 220, .08), transparent),
+    radial-gradient(ellipse 50% 70% at 110% 100%, rgba(190, 170, 220, .07), transparent);
+  pointer-events: none;
+  animation: fog 18s ease-in-out infinite alternate;
+}
+@keyframes fog { to { transform: translateX(-6%); } }
+
+.moon {
+  position: absolute;
+  top: 104px;
+  right: max(var(--gutter), calc((100% - 1360px) / 2 + var(--gutter)));
+  z-index: -1;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 34%, #fff3d6, #f5d79a 55%, #d9b26a);
+  box-shadow: 0 0 60px 18px rgba(255, 214, 140, .18);
+  opacity: .9;
+}
+.moon::before, .moon::after { content: ""; position: absolute; border-radius: 50%; background: rgba(160, 120, 60, .25); }
+.moon::before { top: 20px; left: 16px; width: 14px; height: 14px; }
+.moon::after { top: 42px; left: 38px; width: 9px; height: 9px; }
+
+.bats { position: absolute; top: 150px; right: 0; left: 0; z-index: -1; height: 140px; pointer-events: none; }
+.bat { position: absolute; width: 34px; fill: #050307; animation: flap .35s ease-in-out infinite alternate, drift 9s ease-in-out infinite alternate; }
+.bat:nth-child(1) { top: 10px; right: 18%; }
+.bat:nth-child(2) { top: 56px; right: 30%; width: 24px; animation-delay: -.2s, -3s; }
+.bat:nth-child(3) { top: 0; right: 9%; width: 20px; animation-delay: -.1s, -6s; }
+@keyframes flap { to { transform: scaleY(.55); } }
+@keyframes drift { to { translate: -60px 18px; } }
+
+.heading { position: relative; }
+.heading h1 { font-family: var(--font-creepster), "Inter Variable", system-ui, sans-serif; font-weight: 400; letter-spacing: .01em; color: var(--accent); text-shadow: 0 0 28px rgba(255, 138, 31, .35); }
+.heading h1 span { color: var(--ink); text-shadow: none; }
+.web { position: absolute; top: -36px; left: calc(var(--gutter) * -1); width: 130px; height: 130px; stroke: rgba(241, 233, 218, .22); stroke-width: 1; fill: none; pointer-events: none; }
+
+.spider { position: absolute; top: -36px; right: 26%; display: grid; justify-items: center; pointer-events: none; animation: dangle 5s ease-in-out infinite alternate; }
+.spider::before { content: ""; width: 1px; height: 70px; background: rgba(241, 233, 218, .35); }
+.spider svg { width: 22px; fill: #050307; stroke: #050307; }
+@keyframes dangle { to { translate: 0 22px; } }
+
+@media (max-width: 700px) {
+  .moon { top: 16px; width: 48px; height: 48px; }
+  .moon::before { top: 12px; left: 10px; width: 9px; height: 9px; }
+  .moon::after { top: 28px; left: 26px; width: 6px; height: 6px; }
+  .spider { right: 12%; }
+  .web { width: 90px; height: 90px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .haunted::after, .bat, .spider { animation: none; }
+}

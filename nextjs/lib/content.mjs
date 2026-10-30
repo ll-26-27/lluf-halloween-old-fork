@@ -3,12 +3,12 @@ import path from "node:path";
 import matter from "gray-matter";
 
 export const site = {
-  title: "TDM 155AI",
-  label: "Week 8",
-  term: "TDM 155AI · Fall 2026",
+  title: "LLUF",
+  label: "Halloween",
+  term: "LLUF · Fall 2026",
   // The home page's heading and the line under it.
   heading: "Interviewing",
-  deck: "TDM 155AI, week 8 · October 28, 2026",
+  deck: "LLUF Halloween · October 2026",
 };
 
 // One folder of Markdown, nextjs/content/, is the whole site: content/a/b.md is /a/b and content/README.md is the

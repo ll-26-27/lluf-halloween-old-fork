@@ -1,6 +1,6 @@
 ---
 title: Interviewing
-description: TDM 155AI, week 8 · October 28, 2026 · Interviewing, being interviewed, and podcasting
+description: LLUF Halloween · Interviewing, being interviewed, and podcasting
 author: claude
 print_set: [docs/questions, docs/garageband]
 ---

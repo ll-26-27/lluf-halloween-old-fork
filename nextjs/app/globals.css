@@ -189,7 +189,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .print-link, .inline-link { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .empty-state code { padding: .05em .3em; border: 1px solid var(--line); border-radius: 4px; background: var(--code); color: var(--ink); font-family: ui-monospace, monospace; font-size: .86em; }
 
-/* --- print surface: the one light theme, for /print/* (from tdm155ai-week-3) --- */
+/* --- print surface: the one light theme, for /print/* (from an earlier week's site) --- */
 body:has(.print-root) { background: #ffffff; color-scheme: light; }
 .print-root { --paper: #ffffff; --ink: #111311; --muted: #555a54; --line: #d5d8d2; --accent: #c8102e; --accent-ink: #ffffff; --wash: #f4f4f0; --hover: #e9ebe5; --code: #f4f4f0; --ok: #2f7d32; --error: #8a1c14; background: var(--paper); color: var(--ink); min-height: 100vh; color-scheme: light; }
 .print-root ::selection { background: #f6d0d6; color: var(--ink); }

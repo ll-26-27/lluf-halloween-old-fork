@@ -21,7 +21,7 @@ export default function MultiMachinePage() {
           <h1>Multi-mic interview machine</h1>
           <p className="lede">For a host and several guests on an interface with more inputs: each microphone is one speaker. The Mac records every channel, and the transcript says who said what.</p>
         </header>
-        <MultiMachine apiBase="/machine/api" captureBase="/machine/multi/api" storageKey="tdm155ai-week-8:multi" />
+        <MultiMachine apiBase="/machine/api" captureBase="/machine/multi/api" storageKey="lluf-halloween:multi" />
       </main>
       <SiteFooter />
     </>

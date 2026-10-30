@@ -5,10 +5,10 @@ order: 0
 status: draft
 created: 2026-10-28
 author: claude
-source: "Drafted 2026-10-28 from Marlon's instructions in session, the Unit 2 assignment (tdm155ai-week-4 content/assignments/first-project.md, tdm155ai-week-5 docs/course-docs/unit-2-project.md), and syllabus v6. Replaces the earlier plan of recording the podcast on October 28 and submitting it in the November 6 package."
+source: "Drafted 2026-10-28 from Marlon's instructions in session, the Unit 2 assignment (from earlier weeks' course sites), and syllabus v6. Replaces the earlier plan of recording the podcast on October 28 and submitting it in the November 6 package."
 ---
 
-**TDM 155AI · Unit 2 · Week 8, October 28 · The First Project is 30% of your grade**
+**Unit 2 · Week 8, October 28 · The First Project is 30% of your grade**
 
 Across October you chose a form, studied it, practiced its moves, and edited a piece. Two things are left: finish the piece and gather everything about how you made it by **Friday, November 6**, then talk about it on the podcast the following week.
 

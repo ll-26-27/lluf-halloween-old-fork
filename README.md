@@ -1,14 +1,13 @@
-# tdm155ai-week-8
+# lluf-halloween
 
-TDM 155AI week 8 (class 2026-10-28): Interviewing, being interviewed, and podcasting. A local Next app in `nextjs/` with three parts, one per link in the nav:
+A Halloween remix of a course site on interviewing, being interviewed, and podcasting (October 2026). A local Next app in `nextjs/`, one part per link in the nav:
 
 - **Docs** (`/docs`, Markdown in `nextjs/content/docs/`): question tips for host, guest, and producer, recording a two-person podcast in GarageBand, and the gear and transcription models.
 - **Interview machine** (`/machine`, code in `nextjs/app/machine/`): the mechanic at its simplest. It records from an audio interface (a Focusrite with two microphones: input 1 and input 2 are two people) or any microphone, cuts the sound into utterances at each pause, transcribes each one as it ends, and downloads the transcript as Markdown (and the recording as audio). No AI producer.
 - **Multi-mic interview machine** (`/machine/multi`, code in `nextjs/app/machine/multi/`, linked from the Interview machine page): for a host and several guests on an interface with more inputs (an 8-input Focusrite), one speaker per microphone. Browsers usually hand a page only 2 channels, so by default the local server captures the interface with Homebrew's ffmpeg (`api/capture`), streams every channel to the page at 16 kHz, and saves the whole session as one multichannel WAV in `_media/multi/`; after Stop it downloads as an MP3 mix or the full WAV, and **Delete from this Mac** removes the WAV. macOS asks once for microphone access for the app the server runs in (run `pnpm dev` from Terminal). A Browser capture option is there too, for a browser that delivers more than 2 channels. It keeps the original AI follow-ups, through `machine/api/suggest`.
 - **Remix** (`/remix`, code in `nextjs/app/remix/`): an identical copy of the interview machine for students to change, or fork mwRemix instead if they'd rather start from the full version. Everything it needs is in its folder, including its own server route and styles, so changing it never touches `/machine`.
 - **mwRemix** (`/mw-remix`, code in `nextjs/app/mw-remix/`): what the machine became after a morning of asking for changes (2026-10-28), offered as an example of what a remix can reach. See *How mwRemix works* below.
-
-Private; nested in the Learning Lab's Notebook at `apps/tdm155ai/tdm155ai-week-8/`.
+- **Halloween** (`/halloween`, code in `nextjs/app/halloween/`): this repo's own remix, the Haunted Interview Machine. A copy of mwRemix with a Halloween theme (`halloween.module.css`) and a Slack import under Context setup: pick a public updates channel (someone's work journal) and how many days back, and its messages, thread replies, and transcripts of its videos come in as a Markdown context document. See *Slack import* below.
 
 ## Run it
 
@@ -37,8 +36,19 @@ The simple machine (`/machine`, and the Remix copy) is the first bullet and the 
 
 Monitoring is the interface's job: turn on **Direct Monitor** on the Focusrite. GarageBand can record from the same interface at the same time; see `nextjs/content/docs/garageband.md`.
 
+## Slack import
+
+Set up a Slack app with a bot token (`xoxb-…`) that has the `channels:read`, `channels:history`, `users:read`, and `files:read` scopes, invite it to each updates channel (`/invite @the-bot`), and add to the root `.env`:
+
+```
+SLACK_BOT_TOKEN=xoxb-…
+SLACK_CHANNELS=C0123456789, another-updates-channel
+```
+
+`SLACK_CHANNELS` is the allowlist (channel IDs or names, comma-separated); only public channels on it can be imported. `nextjs/app/halloween/api/slack/route.js` reads the channel, turns it into Markdown (newest day first, so the latest updates survive the 24,000-character cut per document), and transcribes each video or audio attachment: it downloads the file, takes the audio with Homebrew's ffmpeg, and sends it to OpenRouter's speech-to-text. Silent clips are marked *(no audio)*. Transcripts are kept in `_media/slack/` (gitignored) so importing again doesn't transcribe the same file twice. The token and the channel's contents never go into git.
+
 ## Where it came from
 
-**Copied 2026-10-28 from `tdm155ai/tdm155ai-week-7` at `91d0555`**, the Markdown-rendering parts of its Next app only: `lib/content.mjs`, the catch-all page, `/print`, `/context-media`, the Markdown and sidebar components, and the CSS. Week 7's `/resources` docs route became `/docs`. Left behind: the resource sheets, the Tools tab, `utils/`, and the editing skills. The accent changed from amber to red.
+**Copied 2026-10-28 from the previous week's course site**, the Markdown-rendering parts of its Next app only: `lib/content.mjs`, the catch-all page, `/print`, `/context-media`, the Markdown and sidebar components, and the CSS. Week 7's `/resources` docs route became `/docs`. Left behind: the resource sheets, the Tools tab, `utils/`, and the editing skills. The accent changed from amber to red.
 
 The machine was written by Claude on 2026-10-28, the morning of class. Tested that day: both server routes against the real APIs (GPT-4o mini transcribe and Scribe v2 returned a test sentence exactly, in about 2.5 seconds; Claude Haiku 5.5 returned three usable follow-ups), and the whole page in a browser with a simulated two-channel input (a voice on input 1, then input 2, came back as Host and Guest). Marlon confirmed audio and transcript working with the Scarlett 2i2 the same morning. The multi-mic machine was tested with a stand-in for ffmpeg that played a voice on input 3 of a fake 8-channel input (it came back labeled Guest 2, and the 8-channel WAV was saved); **not yet tested with a real 8-input interface**, and native capture failed with a microphone-permission block when the server was started by an agent rather than from Terminal.

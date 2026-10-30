@@ -23,7 +23,7 @@ export default function MachinePage() {
           <p className="lede">Record from your interface, see the transcript as you talk, and download it as Markdown. That's the whole mechanic: <Link href="/remix">Remix</Link> is your copy to build on, and <Link href="/mw-remix">mwRemix</Link> shows where it can go.</p>
           <p className="machine-more"><Link href="/machine/multi">More than 2 microphones? Use the multi-mic interview machine →</Link></p>
         </header>
-        <Machine apiBase="/machine/api" storageKey="tdm155ai-week-8:machine" />
+        <Machine apiBase="/machine/api" storageKey="lluf-halloween:machine" />
       </main>
       <SiteFooter />
     </>

@@ -1,6 +1,6 @@
-# TDM 155AI week 8: instructions for AI assistants
+# LLUF Halloween: instructions for AI assistants
 
-This repository is the week 8 site for TDM 155AI (*Making Stuff in the Age of AI*): Interviewing and podcasting (class October 28, 2026). Students learn to record a podcast and to interview each other, and be interviewed, about their creative projects: their choices, their use of AI, and what they added as people. Three jobs rotate: host, guest, and producer (who runs the pre-interview and passes the host follow-ups during the live interview).
+This repository is LLUF Halloween: a Halloween remix of a course site on interviewing and podcasting (October 2026), whose own page is `/halloween`. Students learn to record a podcast and to interview each other, and be interviewed, about their creative projects: their choices, their use of AI, and what they added as people. Three jobs rotate: host, guest, and producer (who runs the pre-interview and passes the host follow-ups during the live interview).
 
 ## Where things go
 
@@ -8,6 +8,7 @@ This repository is the week 8 site for TDM 155AI (*Making Stuff in the Age of AI
 - **`nextjs/app/machine/`**: the recording machine in its simplest form (record, transcribe as you talk, download Markdown). Don't change it when a student asks for changes; change their copy. `machine/multi/` is the multi-mic version, and `machine/api/suggest/` exists only for it.
 - **`nextjs/app/remix/`**: the student's copy of the machine. This is where student changes go. It's self-contained: `page.jsx`, `Machine.jsx` (the page's controls and logic), `recorder.mjs` (the audio engine in the browser), `machine.module.css` (its styles), and `api/transcribe/` (its server route). Changing it never affects `/machine`.
 - **`nextjs/app/mw-remix/`**: a worked example of what a remix can become (an AI producer steered by highlighting the transcript, research with sources, a beat sheet, AI-sourced questions flagged). Students can read it for ideas and copy from it; don't change it for them either. Its prompts are in `prompts.mjs`, which its page and routes share.
+- **`nextjs/app/halloween/`**: the Halloween remix, a copy of mwRemix with its own theme (`halloween.module.css`) and a Slack import (`api/slack/`) that pulls an allowlisted public updates channel, with transcripts of its videos, in as a context document. Changes for this repo go here. The Slack token and channel allowlist (`SLACK_BOT_TOKEN`, `SLACK_CHANNELS`) live only in the root `.env`; transcripts are cached in the gitignored `_media/slack/`.
 
 See `README.md` for how the machine works.
 
